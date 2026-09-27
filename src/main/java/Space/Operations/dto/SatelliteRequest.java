@@ -33,5 +33,7 @@ public class SatelliteRequest {
 	@DecimalMax(value = "180.0", message = "Inclination cannot be greater than 180 degrees")
 	private BigDecimal inclinationDeg;
 	//
-	
+	@NotBlank(message = "Status is required")
+    @Pattern(regexp = "ACTIVE|INACTIVE|DECOMMISSIONED", message = "Status must be ACTIVE, INACTIVE or DECOMMISSIONED")
+	private String status;
 }
