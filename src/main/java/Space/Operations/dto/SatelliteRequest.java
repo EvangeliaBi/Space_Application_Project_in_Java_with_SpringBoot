@@ -36,4 +36,71 @@ public class SatelliteRequest {
 	@NotBlank(message = "Status is required")
     @Pattern(regexp = "ACTIVE|INACTIVE|DECOMMISSIONED", message = "Status must be ACTIVE, INACTIVE or DECOMMISSIONED")
 	private String status;
+	//
+	private LocalDate launchDate;
+	//
+	public SatelliteRequest() {}  // Constructor
+	//
+	public String getSatelliteCode() {
+		return satelliteCode;
+	}
+	public void setSatelliteCode(String satelliteCode) {
+		this.satelliteCode = satelliteCode;
+	}
+	//
+	public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    //
+    public Integer getNoradId() {
+        return noradId;
+    }
+    public void setNoradId(Integer noradId) {
+        this.noradId = noradId;
+    }
+    //
+    public String getOperator() {
+        return operator;
+    }
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
+    //
+    public String getOrbitType() {
+        return orbitType;
+    }
+    public void setOrbitType(String orbitType) {
+        this.orbitType = orbitType;
+    }
+    //
+    public BigDecimal getAltitudeKm() {
+        return altitudeKm;
+    }
+    public void setAltitudeKm(BigDecimal altitudeKm) {
+        this.altitudeKm = altitudeKm;
+    }
+    //
+    public BigDecimal getInclinationDeg() {
+        return inclinationDeg;
+    }
+    public void setInclinationDeg(BigDecimal inclinationDeg) {
+        this.inclinationDeg = inclinationDeg;
+    }
+    //
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    //
+    public LocalDate getLaunchDate() {
+        return launchDate;
+    }
+    public void setLaunchDate(LocalDate launchDate) {
+        this.launchDate = launchDate;
+    }	
 }
