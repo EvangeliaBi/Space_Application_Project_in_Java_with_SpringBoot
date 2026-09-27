@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 //
 import Space.Operations.model.Satellite;
 import Space.Operations.repository.SatelliteRepository;
+import Space.Operations.dto.SatelliteRequest;
 //
 @Service
 public class SatelliteService {
@@ -27,14 +28,25 @@ public class SatelliteService {
 		return satelliteRepository.findById(id);
 	}
 	//
-	public Satellite createSatellite(Satellite satellite) {
-		if (satellite.getCreatedAt() == null) {
-			satellite.setCreatedAt(java.time.Instant.now());
-		}
+	public Satellite createSatellite(SatelliteRequest request) {
+		Satellite satellite = new Satellite();
+		//
+		satellite.setSatelliteCode(request.getSatelliteCode());
+		satellite.setName(request.getName());
+		satellite.setNoradId(request.getNoradId());
+		satellite.setOperator(request.getOperator());
+		satellite.setOrbitType(request.getOrbitType());
+	    satellite.setAltitudeKm(request.getAltitudeKm());
+	    satellite.setInclinationDeg(request.getInclinationDeg());
+	    satellite.setStatus(request.getStatus());
+	    satellite.setLaunchDate(request.getLaunchDate());
+		//
+	    satellite.setCreatedAt(java.time.Instant.now());
+	    //
 	return satelliteRepository.save(satellite);
 	}
 	//
-	public Optional<Satellite> updateSatellite(Long id, Satellite updatedSatellite) {
+	public Optional<Satellite> updateSatellite(Long id, SatelliteRequest request) {
 		Optional<Satellite> existingSatellite = satelliteRepository.findById(id);
 		//
 		if (existingSatellite.isEmpty()) {
@@ -43,15 +55,15 @@ public class SatelliteService {
 		//
 		Satellite satellite = existingSatellite.get();
 		//
-		satellite.setSatelliteCode(updatedSatellite.getSatelliteCode());
-        satellite.setName(updatedSatellite.getName());
-        satellite.setNoradId(updatedSatellite.getNoradId());
-        satellite.setOperator(updatedSatellite.getOperator());
-        satellite.setOrbitType(updatedSatellite.getOrbitType());
-        satellite.setAltitudeKm(updatedSatellite.getAltitudeKm());
-        satellite.setInclinationDeg(updatedSatellite.getInclinationDeg());
-        satellite.setStatus(updatedSatellite.getStatus());
-        satellite.setLaunchDate(updatedSatellite.getLaunchDate());
+		satellite.setSatelliteCode(request.getSatelliteCode());
+        satellite.setName(request.getName());
+        satellite.setNoradId(request.getNoradId());
+        satellite.setOperator(request.getOperator());
+        satellite.setOrbitType(request.getOrbitType());
+        satellite.setAltitudeKm(request.getAltitudeKm());
+        satellite.setInclinationDeg(request.getInclinationDeg());
+        satellite.setStatus(request.getStatus());
+        satellite.setLaunchDate(request.getLaunchDate());
         //
         return Optional.of(satelliteRepository.save(satellite));
 	}
