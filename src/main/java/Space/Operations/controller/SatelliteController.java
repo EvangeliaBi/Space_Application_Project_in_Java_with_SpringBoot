@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 //
+import jakarta.validation.Valid;
+//
 import Space.Operations.model.Satellite;
 import Space.Operations.service.SatelliteService;
+import Space.Operations.dto.SatelliteRequest;
 //
 // HTTP requests:
 @RestController		
@@ -44,16 +47,16 @@ public class SatelliteController {
 	//
 	// Create a Satellite through POST.
 	@PostMapping
-	public ResponseEntity<Satellite> createSatellite(@RequestBody Satellite satellite){
-		Satellite createdSatellite = satelliteService.createSatellite(satellite);
+	public ResponseEntity<Satellite> createSatellite(@Valid @RequestBody SatelliteRequest request){
+		Satellite createdSatellite = satelliteService.createSatellite(request);
 		//
 	return ResponseEntity.status(HttpStatus.CREATED).body(createdSatellite);
 	}
 	//
 	// Update Satellite with PUT Mapping Endpoint.
 	@PutMapping("/{id}")
-	public ResponseEntity<Satellite> updateSatellite(@PathVariable Long id, @RequestBody Satellite satellite) {
-		return satelliteService.updateSatellite(id, satellite)
+	public ResponseEntity<Satellite> updateSatellite(@PathVariable Long id, @Valid @RequestBody SatelliteRequest request) {
+		return satelliteService.updateSatellite(id, request)
 				.map(ResponseEntity::ok)
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
