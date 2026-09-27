@@ -24,9 +24,14 @@ public class SatelliteRequest {
 	@NotBlank(message = "Orbit type is required")
 	@Pattern(regexp = "LEO|MEO|GEO|HEO", message = "Orbit type must be LEO, MEO, GEO, OR HEO")
 	//
-	private String orbittype;
+	private String orbitType;
 	//
 	@DecimalMin(value = "0.0", inclusive = true, message = "Altitude cannot be negative")
 	private BigDecimal altitudeKm;
+	//
+	@DecimalMin(value = "0.0", inclusive = true, message = "Inclination cannot be negative")
+	@DecimalMax(value = "180.0", message = "Inclination cannot be greater than 180 degrees")
+	private BigDecimal inclinationDeg;
+	//
 	
 }
